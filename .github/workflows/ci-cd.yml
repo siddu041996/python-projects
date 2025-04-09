@@ -2,9 +2,9 @@ name: python-code
 
 on:
     push:
-        branches: [ "master" ]
+        branches: [ "main" ]
     pull_request:
-        branches: [ "master" ]    
+        branches: [ "main" ]    
 
 jobs:    
     build:
@@ -16,14 +16,7 @@ jobs:
               with:
                 python-version: "3.10"
 
-            - name: ssh command
-              uses: appleboy/ssh-action@master
-              with:
-                host: ${{ secrets.HOST }}
-                username: ${{ secrets.USERNAME }}
-                key: ${{ secrets.PASSWORD }}
-                script: |
-                  cd /home/ubuntu/koadz-project
-                  git pull origin main
-                  pip install -r requirements.txt 
-                  python run.py >> /home/ubuntu/koadz-project/koadz.log
+            - name: versions  
+              run: |
+                python --version
+              
